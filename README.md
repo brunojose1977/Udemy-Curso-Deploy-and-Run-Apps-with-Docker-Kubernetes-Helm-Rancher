@@ -21,8 +21,14 @@ kubectl get deployments
 #Gerando o template do Deployment
 kubectl get deployment tomcat8-deployment -o yaml > simple-tomcat8-replica-3-deployment-template.yaml
 
-#Craindo um serviço ClusterIP para expor o deployment.
-kubectl expose deployment tomcat8-deployment --name=tomcat8-deployment-service --port=8000 --target-port=8080
+#Criando um serviço ClusterIP para expor o deployment.
+* O Objetivo do serviço é expor o que foi construído no deployment,  
+* gerando um IP para fora.
+
+kubectl expose deployment tomcat8-deployment --name=tomcat8-deployment-service --port=8080 --target-port=8080
 
 #Gerando o template
 kubectl get service tomcat8-deployment-service -o yaml > simple-tomcat8-deployment-service.yaml
+
+#Comando para monitorar os PODs em tempo real
+kubectl get pods --watch=true
