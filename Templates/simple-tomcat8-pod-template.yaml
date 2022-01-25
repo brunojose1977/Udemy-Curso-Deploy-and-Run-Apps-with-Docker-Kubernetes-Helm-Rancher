@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: tomcat
+  name: teste-pod2
+
+spec:
+  containers:
+  - image: brunojose1977/tomcat8
+    name: teste-pod2
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
