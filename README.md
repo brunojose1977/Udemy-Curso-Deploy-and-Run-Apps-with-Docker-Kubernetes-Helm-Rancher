@@ -32,3 +32,32 @@ kubectl get service tomcat8-deployment-service -o yaml > simple-tomcat8-deployme
 
 #Comando para monitorar os PODs em tempo real
 kubectl get pods --watch=true
+
+#Listagem de PODs com lista customizadas de colunas
+kubectl get pods -o custom-columns=CONTAINER:.spec.containers[0].name,IMAGE:.spec.containers[0].image
+
+#Listagem de PODs mostrando somente a coluna de ID
+kubectl get pods -o custom-columns=CONTAINER:.metadata.name
+
+TAINER:.metadata.name
+CONTAINER
+tomcat8-deployment-6bb7c676cc-qmhnd
+tomcat8-deployment-6bb7c676cc-wh45z
+tomcat8-deployment-6bb7c676cc-vxpcw
+
+#Apagando os PODs de forma incremental
+kubectl delete pod $(kubectl get pods -o custom-columns=CONTAINER:.metadata.name)
+
+NAME                                  READY   STATUS              RESTARTS   AGE
+tomcat8-deployment-6bb7c676cc-bmmgg   0/1     ContainerCreating   0          15s
+tomcat8-deployment-6bb7c676cc-q6vg4   0/1     ContainerCreating   0          15s
+tomcat8-deployment-6bb7c676cc-7trbj   0/1     ContainerCreating   0          15s
+
+
+
+#Tentando uma abordagem diferente, ao invés de fazer o expose do service com o um ClusterIP melhor fazer como um LoadBalancer
+#Criando um deployment de 3 PODs de contêineres Tomcat8
+kubectl create deployment tomcat8-deployment --image=brunojose1977/tomcat8 --port=8080 --replicas=3
+
+#Fazendo a exposição como loadbalancer e não como ClusterIP
+kubectl expose deployment tomcat8-deployment --name=tomcat8-deployment-loadbalancer-service --type=LoadBalancer --port 8080

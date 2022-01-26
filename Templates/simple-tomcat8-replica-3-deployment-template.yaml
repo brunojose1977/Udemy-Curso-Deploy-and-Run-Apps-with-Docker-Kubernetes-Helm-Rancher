@@ -3,15 +3,15 @@ kind: Deployment
 metadata:
   annotations:
     deployment.kubernetes.io/revision: "1"
-  creationTimestamp: "2022-01-25T19:31:20Z"
+  creationTimestamp: "2022-01-25T23:31:29Z"
   generation: 1
   labels:
     app: tomcat8-deployment
   name: tomcat8-deployment
   namespace: default
-  resourceVersion: "907030"
+  resourceVersion: "918131"
   selfLink: /apis/apps/v1/namespaces/default/deployments/tomcat8-deployment
-  uid: 1a10c1b6-e69f-4056-898e-0003fa8c0d88
+  uid: deaa1288-f389-4b63-9360-c26d4d8bc088
 spec:
   progressDeadlineSeconds: 600
   replicas: 3
@@ -48,18 +48,18 @@ spec:
 status:
   availableReplicas: 3
   conditions:
-  - lastTransitionTime: "2022-01-25T19:31:29Z"
-    lastUpdateTime: "2022-01-25T19:31:29Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  - lastTransitionTime: "2022-01-25T19:31:20Z"
-    lastUpdateTime: "2022-01-25T19:31:29Z"
+  - lastTransitionTime: "2022-01-25T23:31:30Z"
+    lastUpdateTime: "2022-01-25T23:31:58Z"
     message: ReplicaSet "tomcat8-deployment-6bb7c676cc" has successfully progressed.
     reason: NewReplicaSetAvailable
     status: "True"
     type: Progressing
+  - lastTransitionTime: "2022-01-25T23:40:03Z"
+    lastUpdateTime: "2022-01-25T23:40:03Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
   observedGeneration: 1
   readyReplicas: 3
   replicas: 3
