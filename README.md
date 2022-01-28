@@ -3,6 +3,17 @@ Udemy - Curso Deploy and Run Apps with Docker, Kubernetes, Helm, Rancher.
 
 Este repositório se baseia a partir do capítulo 12 do curso e fez adaptações para construções mais simples para objetivar o uso do Kubernetes, Helm e Rancher som conteiners Ubuntu e NGINX e uma aplicação simples de java (app) que difere do material orientado no curso.
 
+Abaixo todos os comando usados para criar os objetos e para gerar os templates.
+
+O treino pode ser executado das seguintes formas:
+
+1 - criar os objetos a partir dos /Templates/*
+  # kubectl apply -f /Template/<nome-template>
+
+2 - criar tudo via comando (ver lista abaixo)
+
+
+
 #Criando o POD
 kubectl run tomcat8-pod --image=brunojose1977/tomcat8 --port=8080
 
