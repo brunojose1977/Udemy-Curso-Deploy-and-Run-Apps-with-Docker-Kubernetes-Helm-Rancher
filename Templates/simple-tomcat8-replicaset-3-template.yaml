@@ -6,12 +6,12 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: tomcat8-deployment
+      app: tomcat-app
   template:
     metadata:
       labels:
-        app: tomcat8-deployment
+        app: tomcat-app
     spec:
       containers:
-      - name: tomcat8
+      - name: tomcat8-pod
         image: brunojose1977/tomcat8

@@ -21,14 +21,23 @@ kubectl get deployments
 #Gerando o template do Deployment
 kubectl get deployment tomcat8-deployment -o yaml > simple-tomcat8-replica-3-deployment-template.yaml
 
+#Criando o Deployment a partir do Templates
+kubectl apply -f simple-tomcat8-deployment-3-replicas-template.yaml
+
 #Criando um serviço ClusterIP para expor o deployment.
 * O Objetivo do serviço é expor o que foi construído no deployment,  
 * gerando um IP para fora.
 
-kubectl expose deployment tomcat8-deployment --name=tomcat8-deployment-service --port=8080 --target-port=8080
+kubectl expose deployment tomcat8-deployment --name=tomcat8-deployment-service-tipo-clusterip --port=8080 --target-port=8080
+
+#exportando o template de servico do deployment tipo ClusterIP
+kubectl get service tomcat8-deployment-service-tipo-clusterip -o yaml > simple-tomcat8-expose-deployment-3-replicas-service-type-ClusterIP.yaml
+
+#Expondo Deployment como serviço Load Balancer (melhor que opção anterior)
+kubectl expose deployment tomcat8-deployment --name=tomcat8-deployment-loadbalancer-service --type=LoadBalancer --port 8080
 
 #Gerando o template
-kubectl get service tomcat8-deployment-service -o yaml > simple-tomcat8-deployment-service.yaml
+kubectl get service tomcat8-deployment-loadbalancer-service -o yaml > simple-tomcat8-expose-deployment-3-replicas-service-type-load-balancer.yaml
 
 #Comando para monitorar os PODs em tempo real
 kubectl get pods --watch=true
@@ -54,10 +63,28 @@ tomcat8-deployment-6bb7c676cc-q6vg4   0/1     ContainerCreating   0          15s
 tomcat8-deployment-6bb7c676cc-7trbj   0/1     ContainerCreating   0          15s
 
 
+#Agora aumentando a escala original de 3 para 5 réplicas
 
-#Tentando uma abordagem diferente, ao invés de fazer o expose do service com o um ClusterIP melhor fazer como um LoadBalancer
-#Criando um deployment de 3 PODs de contêineres Tomcat8
-kubectl create deployment tomcat8-deployment --image=brunojose1977/tomcat8 --port=8080 --replicas=3
+kubectl scale --replicas=3 deployment/tomcat8-deployment
 
-#Fazendo a exposição como loadbalancer e não como ClusterIP
-kubectl expose deployment tomcat8-deployment --name=tomcat8-deployment-loadbalancer-service --type=LoadBalancer --port 8080
+#Outra opção ao deploy é criar um replicaset. Aplicando o modelo criado em tempĺates
+
+cd /home/sibbr/Cursos-Udemy/Udemy-Curso-Deploy-and-Run-Apps-with-Docker-Kubernetes-Helm-Rancher/Templates
+kubectl apply -f simple-tomcat8-replicaset-3-template.yaml
+kubectl get replicasets
+kubectl get pods
+
+#Aplicando o LoadBalancer sobre o ReplicaSet
+kubectl expose replicaset tomcat8-replicaset --name=tomcat8-replicaset-loadbalancer-service --type=LoadBalancer --port 8080
+
+#Gerando o template desse expose
+kubectl get service tomcat8-replicaset-loadbalancer-service -o yaml > simple-tomcat8-expose-replicaset-service-type-load-balancer.yaml
+
+#Pegando o IP para teste do Load balancer
+kubectl get service tomcat8-replicaset-loadbalancer-service -o yaml | grep IP
+
+curl <IP>:8080
+curl 10.152.183.66:8080
+
+#Alterando a escala do ReplicaSet
+kubectl scale --replicas=10 replicaset/tomcat8-replicaset
