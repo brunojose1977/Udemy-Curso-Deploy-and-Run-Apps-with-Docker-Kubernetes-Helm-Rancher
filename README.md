@@ -10,6 +10,12 @@ O treino pode ser executado das seguintes formas:
 1 - criar os objetos a partir dos /Templates/*
   # kubectl apply -f /Template/<nome-template>
 
+Exemplos:
+
+kubectl apply -f simple-tomcat8-deployment-3-replicas-template.yaml
+
+kubectl apply -f simple-tomcat8-expose-deployment-3-replicas-service-type-load-balancer.yaml
+
 2 - criar tudo via comando (ver lista abaixo)
 
 
