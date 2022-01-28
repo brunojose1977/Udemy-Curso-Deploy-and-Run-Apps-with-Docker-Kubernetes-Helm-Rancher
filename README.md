@@ -88,3 +88,9 @@ curl 10.152.183.66:8080
 
 #Alterando a escala do ReplicaSet
 kubectl scale --replicas=10 replicaset/tomcat8-replicaset
+
+#Lista de comandos de limpeza
+#Deletendo os services
+#Deletando os deployments
+#Deletando os replicasets
+clear && kubectl delete service tomcat8-deployment-service-tipo-clusterip && kubectl delete service tomcat8-deployment-loadbalancer-service && kubectl delete service tomcat8-replicaset-loadbalancer-service && kubectl delete deployment tomcat8-deployment && kubectl delete replicaset tomcat8-replicaset
