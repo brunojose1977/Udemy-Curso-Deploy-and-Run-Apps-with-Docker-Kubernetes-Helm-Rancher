@@ -1,3 +1,13 @@
+#---------------------------------------------------------------
+#Bruno Silva
+#brunojose1977@yahoo.com.br
+#---------------------------------------------------------------
+# Objetivo: praticar a construção dos objetos diversos da
+# estrutura do Kubernetes.
+#
+# OBS: Os testes foram executados no microk8s.
+#
+#
 # Udemy-Curso-Deploy-and-Run-Apps-with-Docker-Kubernetes-Helm-Rancher
 Udemy - Curso Deploy and Run Apps with Docker, Kubernetes, Helm, Rancher.
 
