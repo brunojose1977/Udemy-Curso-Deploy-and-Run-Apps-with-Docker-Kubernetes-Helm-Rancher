@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: tomcat8-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tomcat8-deployment
+  template:
+    metadata:
+      labels:
+        app: tomcat8-deployment
+    spec:
+      containers:
+      - name: tomcat8
+        image: brunojose1977/tomcat8

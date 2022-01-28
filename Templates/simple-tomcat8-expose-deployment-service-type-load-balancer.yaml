@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Load
+metadata:
+  creationTimestamp: "2022-01-26T17:52:04Z"
+  labels:
+    app: tomcat8-deployment
+  name: tomcat8-deployment-loadbalancer-service
+  namespace: default
+  resourceVersion: "934001"
+  selfLink: /api/v1/namespaces/default/services/tomcat8-deployment-loadbalancer-service
+  uid: 637d6e92-02c0-4e32-adcc-100b62579787
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.152.183.180
+  clusterIPs:
+  - 10.152.183.180
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 32467
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: tomcat8-deployment
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
