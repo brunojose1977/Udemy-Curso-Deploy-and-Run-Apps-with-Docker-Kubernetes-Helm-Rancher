@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   labels:
     app: tomcat-app
-  name: tomcat8-pod
+    name: tomcat8-pod
 
 spec:
   containers:
