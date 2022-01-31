@@ -31,9 +31,10 @@ spec:
         app: tomcat8-app
     spec:
       containers:
+      - image: tomcat:7.0
+#      - image: tomcat:8.0
 #      - image: brunojose1977/tomcat8
-      - image: tomcat:8.0
-#      - image: tomcat:9.0
+
 
         imagePullPolicy: Always
         name: tomcat8
