@@ -39,6 +39,13 @@ kubectl get pods
 #Gerando o template do POD
 kubectl get pod tomcat8-pod -o yaml > simple-tomcat8-pod-template.yaml
 
+#Criando um serviço NodePort para exposição do pod para a Internet
+kubectl expose pod tomcat8-pod --type=NodePort --port=8080 --name=tomcat8-internet
+
+#Exportando o yaml do Serviço NodePort do Pode para um um template yaml
+kubectl get service tomcat8-internet -o yaml > pod-tomcat8-internet-NodePort.yaml
+
+
 #Criando um deployment de 3 PODs de contêineres Tomcat8
 kubectl create deployment tomcat8-deployment --image=brunojose1977/tomcat8 --port=8080 --replicas=3
 

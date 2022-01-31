@@ -94,3 +94,28 @@ kubectl rollout history deployment tomcat8-deployment
 kubectl rollout undo deployment tomcat8-deployment
 kubectl rollout status deployment tomcat8-deployment
 kubectl rollout history deployment tomcat8-deployment
+
+#--------------------------------------------------------------
+# Informações importantes sobre Service do tipo ClusterIP
+#---------------------------------------------------------------
+* Geralmente são usados para comunicação interna entre os módulos da aplicação
+  que estão rodando no cluster, uma vez que esse modelo de serviço não permite
+  acesso externo.
+* Como exemplo eu posso imaginar que eu tenho a seguinte relação entre o frontend e backend da minha plataforma
+
+#Frontend (Service LoadBalancer)
+- AngularJs
+- label: app:frontend
+- exposto como Load Balancer service, (acesso permitido pela internet);
+- Possui mecanismo de load-balancing entre os pods.
+
+#backend (Service ClusterIP)
+- NodeJs
+- label: app:backend
+- exposto com ClusterIP service (para acesso apenas internamente, por exemplo pelos conteineres do frontend acesso da Internet não é permitido).
+- Possue também mecanismo de Load-Balance entre os PODs (healthchecks).
+
+#(Service NodePort)
+- Permite acesso externo, por exemplo para acesso ao NGINX
+- Label: app:nginx
+- Pode ser usado para expor o acesso um POD.

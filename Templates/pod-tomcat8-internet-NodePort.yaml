@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-01-31T20:08:12Z"
+  labels:
+    run: tomcat8-pod
+  name: tomcat8-internet
+  namespace: default
+  resourceVersion: "1136420"
+  selfLink: /api/v1/namespaces/default/services/tomcat8-internet
+  uid: 15ca9511-92c9-4b02-a8a9-642756b54aba
+spec:
+  clusterIP: 10.152.183.62
+  clusterIPs:
+  - 10.152.183.62
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 32290
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: tomcat8-pod
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

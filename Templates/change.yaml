@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"1"},"creationTimestamp":"2022-01-28T20:33:28Z","generation":1,"labels":{"app":"tomcat8-app"},"name":"tomcat8-deployment","namespace":"default","resourceVersion":"1039514","selfLink":"/apis/apps/v1/namespaces/default/deployments/tomcat8-deployment","uid":"18d678a8-bdd3-4ade-8b48-67e5de8f75ab"},"spec":{"progressDeadlineSeconds":600,"replicas":10,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app":"tomcat8-app"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"tomcat8-app"}},"spec":{"containers":[{"image":"tomcat:7.0","imagePullPolicy":"Always","name":"tomcat8","ports":[{"containerPort":8080,"protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30}}},"status":{"availableReplicas":3,"conditions":[{"lastTransitionTime":"2022-01-28T20:33:39Z","lastUpdateTime":"2022-01-28T20:33:39Z","message":"Deployment has minimum availability.","reason":"MinimumReplicasAvailable","status":"True","type":"Available"},{"lastTransitionTime":"2022-01-28T20:33:28Z","lastUpdateTime":"2022-01-28T20:33:39Z","message":"ReplicaSet \"tomcat8-deployment-6bb7c676cc\" has successfully progressed.","reason":"NewReplicaSetAvailable","status":"True","type":"Progressing"}],"observedGeneration":1,"readyReplicas":3,"replicas":10,"updatedReplicas":3}}
+  creationTimestamp: "2022-01-31T16:30:04Z"
+  generation: 1
+  labels:
+    app: tomcat8-app
+  name: tomcat8-deployment
+  namespace: default
+  resourceVersion: "1109001"
+  selfLink: /apis/apps/v1/namespaces/default/deployments/tomcat8-deployment
+  uid: 6154ae00-91f7-4d1e-a287-b70fed7ed86a
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 10
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: tomcat8-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: tomcat8-app
+    spec:
+      containers:
+      - image: tomcat:7.0.93
+        imagePullPolicy: Always
+        name: tomcat8
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 10
+  conditions:
+  - lastTransitionTime: "2022-01-31T16:30:44Z"
+    lastUpdateTime: "2022-01-31T16:30:44Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2022-01-31T16:30:04Z"
+    lastUpdateTime: "2022-01-31T16:30:48Z"
+    message: ReplicaSet "tomcat8-deployment-6f84fc8c6" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 10
+  replicas: 10
+  updatedReplicas: 10
