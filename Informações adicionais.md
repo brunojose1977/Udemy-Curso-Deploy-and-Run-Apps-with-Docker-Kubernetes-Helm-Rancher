@@ -119,3 +119,65 @@ kubectl rollout history deployment tomcat8-deployment
 - Permite acesso externo, por exemplo para acesso ao NGINX
 - Label: app:nginx
 - Pode ser usado para expor o acesso um POD.
+- Os acessos costuma ser feitos na porta acima 30000, exemplo 30007
+
+
+#--------------------------------------------------------------
+# Informações importantes sobre IngressController
+#---------------------------------------------------------------
+* Orientação de instalação sugerida:
+- https://www.youtube.com/watch?v=AGSGcUzkqrE
+* Ele é instalado a parte no Kubernetes;
+* Pode ser instalado como um plugin;
+* O NGINX pode ser instalado como IngressController;
+* É o ingressController que permite o acesso por um endereço http (sua URL do seu domínio);/
+* Funcionalidade que configura regras de acesso https
+* Para a montagem aqui no ambiente de teste (meu laptop) a indicação é seguir as instruções que constam no repositório do Kubernetes Ingress Controller no Github.com.
+- github.com/kubernetes/ingress-nginx
+-- pasta deploy
+--- pasta static/provider
+---- pasta baremetal
+----- arquivo: deploy.yaml (pra facilitar o entendimento seria com renomear para nginx-ingress-controller-apply.yaml)
+* Aplicar esse yaml com kubectl apply -f nginx-ingress-controller-apply.yaml
+* Obs: pegar o arquivo RAW
+* A instalação vai criar pods dentro do namespace "ingress-nginx"
+
+* Depois de instalado, posso fazer chamadas para os nodes do cluster passando pela porta (exemplo) 32512, a partir daí o NGINX vai responder, mais ainda vai apresentar erro 404 porque nenhuma regra de direcionamento de tráfego foi configurada.
+
+* Pra melhorar os testes seria bom configurar o DNS local do seu host
+sudo vi /etc/hosts
+* incluir o ip do node como no exemplo Abaixo
+10.3.227.29 simple-teste.com.br
+
+* Agora ao invés de testar com o IP vamos testar com a URL criada simple-teste.com.br:32512
+
+* A título de estudo uma opção seria criar um IP externo
+- abra o nginx-ingress-controller-apply.yaml e faça a seguinte edição:
+- em NodePort, depois de selector, no mesmo alinhamento, colocar:
+Exemplo
+  externalIPs: 10.3.227.29
+
+* aplico novamente o arquivo .yaml
+* assim foi conseguir didaticamente acessar a URL sem colocar a porta
+
+A partir daí já podemos configurar o tráfego para nossa aplicação, assim crio um arquivo do tipo Kind: Ingress
+
+apiVersion: networking.k8s.io/v1beta1
+kind: IngressControllermetadata:
+  name: simple-teste
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: simple-teste.com.br
+    http:
+      paths:
+        - path: /
+        backend:
+          serviceName: simple-testes
+          servicePort: 3000
+
+- Depois de pronto para testar:
+  kubectl get ing
+
+  OBS: observer que o HOST está preeechido com a url .com.br
