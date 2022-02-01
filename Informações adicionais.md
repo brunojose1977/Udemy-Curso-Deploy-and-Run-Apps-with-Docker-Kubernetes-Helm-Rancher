@@ -122,9 +122,9 @@ kubectl rollout history deployment tomcat8-deployment
 - Os acessos costuma ser feitos na porta acima 30000, exemplo 30007
 
 
-#--------------------------------------------------------------
-# Informações importantes sobre IngressController
-#---------------------------------------------------------------
+#---------------------------------------------------------------------------
+# Informações importantes sobre IngressController - Instalação no Baremetal
+#---------------------------------------------------------------------------
 * Orientação de instalação sugerida:
 - https://www.youtube.com/watch?v=AGSGcUzkqrE
 * Ele é instalado a parte no Kubernetes;
@@ -137,8 +137,8 @@ kubectl rollout history deployment tomcat8-deployment
 -- pasta deploy
 --- pasta static/provider
 ---- pasta baremetal
------ arquivo: deploy.yaml (pra facilitar o entendimento seria com renomear para nginx-ingress-controller-apply.yaml)
-* Aplicar esse yaml com kubectl apply -f nginx-ingress-controller-apply.yaml
+----- arquivo: deploy.yaml (pra facilitar o entendimento seria com renomear para nginx-ingress-controller-template.yaml)
+* Aplicar esse yaml com kubectl apply -f nginx-ingress-controller-template.yaml
 * Obs: pegar o arquivo RAW
 * A instalação vai criar pods dentro do namespace "ingress-nginx"
 
@@ -152,7 +152,7 @@ sudo vi /etc/hosts
 * Agora ao invés de testar com o IP vamos testar com a URL criada simple-teste.com.br:32512
 
 * A título de estudo uma opção seria criar um IP externo
-- abra o nginx-ingress-controller-apply.yaml e faça a seguinte edição:
+- abra o nginx-ingress-controller-template.yaml e faça a seguinte edição:
 - em NodePort, depois de selector, no mesmo alinhamento, colocar:
 Exemplo
   externalIPs: 10.3.227.29
@@ -180,4 +180,4 @@ spec:
 - Depois de pronto para testar:
   kubectl get ing
 
-  OBS: observer que o HOST está preeechido com a url .com.br
+  OBS: observe que o HOST está preeechido com a url .com.br
