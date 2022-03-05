@@ -5,7 +5,7 @@
 # Objetivo: praticar a construção dos objetos diversos da
 # estrutura do Kubernetes.
 #
-# Branch : ingress-controlle
+# Branch : ingress-controller
 # Atualização da versão para uso do ingress controller para permitir o acesso pela Internet
 #
 # OBS:
