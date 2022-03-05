@@ -5,11 +5,15 @@
 # Objetivo: praticar a construção dos objetos diversos da
 # estrutura do Kubernetes.
 #
-# OBS: Os testes foram executados no microk8s.
+# Branch : ingress-controlle
+# Atualização da versão para uso do ingress controller para permitir o acesso pela Internet
+#
+# OBS:
+#      - Os testes foram executados no microk8s.
+#      - Maiores detalhes no arquivos Informações adicionais.md
 #
 #
 # Udemy-Curso-Deploy-and-Run-Apps-with-Docker-Kubernetes-Helm-Rancher
-Udemy - Curso Deploy and Run Apps with Docker, Kubernetes, Helm, Rancher.
 
 Este repositório se baseia a partir do capítulo 12 do curso e fez adaptações para construções mais simples para objetivar o uso do Kubernetes, Helm e Rancher som conteiners Ubuntu e NGINX e uma aplicação simples de java (app) que difere do material orientado no curso.
 
