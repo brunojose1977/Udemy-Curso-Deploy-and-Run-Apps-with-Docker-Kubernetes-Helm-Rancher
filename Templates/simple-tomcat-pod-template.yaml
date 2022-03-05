@@ -3,12 +3,12 @@ kind: Pod
 metadata:
   labels:
     app: tomcat-app
-    name: tomcat8-pod
+    name: tomcat-pod
 
 spec:
   containers:
   - image: brunojose1977/tomcat8
-    name: tomcat8-pod
+    name: tomcat-pod
     ports:
     - containerPort: 8080
       protocol: TCP

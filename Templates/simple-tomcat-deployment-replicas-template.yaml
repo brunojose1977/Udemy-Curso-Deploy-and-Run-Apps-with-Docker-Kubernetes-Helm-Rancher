@@ -5,7 +5,7 @@ metadata:
     deployment.kubernetes.io/revision: "1"
 #Inicio das anotações customizadas
 #Sempre que for alterar e dar um apply -f utilize a diretiva --record
-#Exemplo: Para ver o histório dos rollouts: kubectl rollout history deployment tomcat8-deployment
+#Exemplo: Para ver o histório dos rollouts: kubectl rollout history deployment tomcat-deployment
     kubernetes.io/change-cause: Implantação do tomcat:8.0
     imageregistry: "https://hub.docker.com/"
     kubernetes.io/change-cause: "Implantação do tomcat:8.0 com annotations"
@@ -15,19 +15,19 @@ metadata:
   creationTimestamp: "2022-01-28T20:33:28Z"
   generation: 1
   labels:
-    app: tomcat8-app
-  name: tomcat8-deployment
+    app: tomcat-app
+  name: tomcat-deployment
   namespace: default
   resourceVersion: "1039514"
-  selfLink: /apis/apps/v1/namespaces/default/deployments/tomcat8-deployment
+  selfLink: /apis/apps/v1/namespaces/default/deployments/tomcat-deployment
   uid: 18d678a8-bdd3-4ade-8b48-67e5de8f75ab
 spec:
   progressDeadlineSeconds: 600
-  replicas: 10
+  replicas: 3
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: tomcat8-app
+      app: tomcat-app
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -37,15 +37,15 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: tomcat8-app
+        app: tomcat-app
       annotations:
 #        change-cause: "Implantação da versão tomcat:7.0.93-alpine."
         change-cause: "Implantação da versão tomcat:8.0."
     spec:
       containers:
 #      - image: tomcat:7.0.93-alpine
-      - image: tomcat:8.0
-#      - image: brunojose1977/tomcat8
+#      - image: tomcat:8.0
+      - image: brunojose1977/tomcat8
 
 
         imagePullPolicy: Always
@@ -72,11 +72,11 @@ status:
     type: Available
   - lastTransitionTime: "2022-01-28T20:33:28Z"
     lastUpdateTime: "2022-01-28T20:33:39Z"
-    message: ReplicaSet "tomcat8-deployment-6bb7c676cc" has successfully progressed.
+    message: ReplicaSet "tomcat-deployment-6bb7c676cc" has successfully progressed.
     reason: NewReplicaSetAvailable
     status: "True"
     type: Progressing
   observedGeneration: 1
   readyReplicas: 3
-  replicas: 10
+  replicas: 3
   updatedReplicas: 3

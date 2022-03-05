@@ -8,7 +8,9 @@
 # Operações com Deployments
 #---------------------------------------------------------------
 * O modelo de Deployment no Kubernetes NÃO é recomendado para conteineres STATETULL
-* A forma de gerencia o processamento das mudanças é realizado utilizando a controle "rollout".
+* A forma de gerenciar o processamento das mudanças é realizado utilizando a controle "rollout".
+* Saiba mais sobre o uso do rollout: kubectl rollout --help | more
+
 
 OBS:
 
@@ -23,11 +25,11 @@ OBS:
 
 # 0 - Criação do Deployment
 
-Se o deployment tomcat8-deployment ainda não foi criado # então crie a partir do template /Template/simple-tomcat8-#deployment-3-replicas-template.yaml
+Se o deployment tomcat-deployment ainda não foi criado # então crie a partir do template /Template/simple-tomcat-#deployment-3-replicas-template.yaml
 
-# 1 - Gere um yaml do estado atual do deployment de nome "tomcat8-deployment"
+# 1 - Gere um yaml do estado atual do deployment de nome "tomcat-deployment"
 
-kubectl get deployment tomcat8-deployment -o yaml > change.yaml
+kubectl get deployment tomcat-deployment -o yaml > change.yaml
 
 # 2 - Edite o arquivo exportado
 
@@ -43,18 +45,18 @@ kubectl apply -f change.yaml --record
 
 # 5 - Faça uma anotação na alteração que foi registrada.
 
-kubectl annotate deployment/tomcat8-deployment kubernetes.io/change-cause="Implantação do tomcat:7.0.93-alpine"
+kubectl annotate deployment/tomcat-deployment kubernetes.io/change-cause="Implantação do tomcat:7.0.93-alpine"
 
 # 6 - verifique o histórico de rollouts
 
-kubectl rollout history  deployment tomcat8-deployment
+kubectl rollout history  deployment tomcat-deployment
 
 
 #SEGUNDO DEPLOYMENT - 10 CONTEINERES DE TOMCAT 8.0
 
-# 1 - Gere um yaml do estado atual do deployment de nome #"tomcat8-deployment"
+# 1 - Gere um yaml do estado atual do deployment de nome #"tomcat-deployment"
 
-kubectl get deployment tomcat8-deployment -o yaml > change.yaml
+kubectl get deployment tomcat-deployment -o yaml > change.yaml
 
 # 2 - Edite o arquivo exportado
 
@@ -70,30 +72,30 @@ kubectl apply -f change.yaml --record
 
 # 4.1 - Experimente pausar o processe de rollouts
 
-kubectl rollout pause deployment tomcat8-deployment
+kubectl rollout pause deployment tomcat-deployment
 
 # 4.2 - Verifique até onde as mudanças foram ralizadas até a # pausa
 
-kubectl rollout status deployment tomcat8-deployment
+kubectl rollout status deployment tomcat-deployment
 
 # 4.3 - Dê sequencia no processamento do rollout e acompanhe # o status
 
-kubectl rollout resume deployment tomcat8-deployment
-kubectl rollout status deployment tomcat8-deployment
+kubectl rollout resume deployment tomcat-deployment
+kubectl rollout status deployment tomcat-deployment
 
 # 5 - Faça uma anotação na alteração que foi registrada.
 
-kubectl annotate deployment/tomcat8-deployment kubernetes.io/change-cause="Implantação do tomcat:8.0"
+kubectl annotate deployment/tomcat-deployment kubernetes.io/change-cause="Implantação do tomcat:8.0"
 
 # 6 - verifique o histórico de rollouts
 
-kubectl rollout history deployment tomcat8-deployment
+kubectl rollout history deployment tomcat-deployment
 
 # 7 - Realize um rollback da implantação "rollout"
 
-kubectl rollout undo deployment tomcat8-deployment
-kubectl rollout status deployment tomcat8-deployment
-kubectl rollout history deployment tomcat8-deployment
+kubectl rollout undo deployment tomcat-deployment
+kubectl rollout status deployment tomcat-deployment
+kubectl rollout history deployment tomcat-deployment
 
 #--------------------------------------------------------------
 # Informações importantes sobre Service do tipo ClusterIP

@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: bjsoft.com.br
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: teste-app
+          servicePort: 8080
+            

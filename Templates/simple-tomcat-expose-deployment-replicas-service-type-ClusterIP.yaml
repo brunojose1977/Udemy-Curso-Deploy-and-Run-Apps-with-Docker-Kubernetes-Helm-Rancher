@@ -3,11 +3,11 @@ kind: Service
 metadata:
   creationTimestamp: "2022-01-28T21:05:58Z"
   labels:
-    app: tomcat8-app
-  name: tomcat8-deployment-service-tipo-clusterip
+    app: tomcat-app
+  name: tomcat-deployment-service-tipo-clusterip
   namespace: default
   resourceVersion: "1042986"
-  selfLink: /api/v1/namespaces/default/services/tomcat8-deployment-service-tipo-clusterip
+  selfLink: /api/v1/namespaces/default/services/tomcat-deployment-service-tipo-clusterip
   uid: acf4c817-2e84-4f3c-93aa-0fd04469d2a9
 spec:
   clusterIP: 10.152.183.161
@@ -22,7 +22,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: tomcat8-app
+    app: tomcat-app
   sessionAffinity: None
   type: ClusterIP
 status:

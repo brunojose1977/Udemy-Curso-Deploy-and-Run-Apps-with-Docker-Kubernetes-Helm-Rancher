@@ -26,12 +26,15 @@ clear
 echo "Script Shell de limpeza "
 echo " "
 echo " Deletendo os services "
-kubectl delete service tomcat8-deployment-service-tipo-clusterip
-kubectl delete service tomcat8-deployment-loadbalancer-service
-kubectl delete service tomcat8-replicaset-loadbalancer-service
+kubectl delete service tomcat-deployment-service-tipo-clusterip
+kubectl delete service tomcat-deployment-loadbalancer-service
+kubectl delete service tomcat-replicaset-loadbalancer-service
 
 echo " Deletando os deployments"
-kubectl delete deployment tomcat8-deployment
+kubectl delete deployment tomcat-deployment
 
 echo " Deletando os replicasets"
-kubectl delete replicaset tomcat8-replicaset
+kubectl delete replicaset tomcat-replicaset
+
+echo " Deletendo o NodePort"
+kubectl delete NodePort tomcat-service-nodeport

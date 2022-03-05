@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: tomcat8-replicaset
+  name: tomcat-replicaset
 spec:
   replicas: 3
   selector:
@@ -13,5 +13,5 @@ spec:
         app: tomcat-app
     spec:
       containers:
-      - name: tomcat8-pod
+      - name: tomcat-pod
         image: brunojose1977/tomcat8
