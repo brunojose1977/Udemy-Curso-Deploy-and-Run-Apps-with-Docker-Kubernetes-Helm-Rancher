@@ -141,6 +141,11 @@ kubectl rollout history deployment tomcat-deployment
 ---- pasta baremetal
 ----- arquivo: deploy.yaml (pra facilitar o entendimento seria com renomear para nginx-ingress-controller-template.yaml)
 * Aplicar esse yaml com kubectl apply -f nginx-ingress-controller-template.yaml
+* Para listar os serviços do ingress controler, é preciso informar o namespace correto (ingress-nginx).
+
+kubectl get services --namespace ingress-nginx
+
+
 * Obs: pegar o arquivo RAW
 * A instalação vai criar pods dentro do namespace "ingress-nginx"
 
