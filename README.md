@@ -66,7 +66,12 @@ kubectl apply -f simple-tomcat-deployment-replicas-template.yaml
 * O Objetivo do serviço é expor o que foi construído no deployment,  
 * gerando um IP para fora.
 
+#Expondo o Deployment como service
 kubectl expose deployment tomcat-deployment --name=tomcat-deployment-service-tipo-clusterip --port=8080 --target-port=8080
+
+#Agora expondo esse serviço com NodePort
+kubectl expose service tomcat8-deployment-service-tipo-clusterip --name=tomcat8-service-nodeport --type=NodePort --port 8080
+
 
 #exportando o template de servico do deployment tipo ClusterIP
 kubectl get service tomcat-deployment-service-tipo-clusterip -o yaml > simple-tomcat-expose-deployment-3-replicas-service-type-ClusterIP.yaml

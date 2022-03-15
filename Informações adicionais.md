@@ -145,6 +145,13 @@ kubectl rollout history deployment tomcat-deployment
 
 kubectl get services --namespace ingress-nginx
 
+ingress-nginx-controller             NodePort    10.152.183.114   192.168.1.7   80:30371/TCP,443:32123/TCP
+
+* exportando o service do ingress controles para edição
+
+kubectl get service ingress-nginx-controller --namespace ingress-nginx -o yaml > change-ingress-controllet.yaml
+
+
 
 * Obs: pegar o arquivo RAW
 * A instalação vai criar pods dentro do namespace "ingress-nginx"
