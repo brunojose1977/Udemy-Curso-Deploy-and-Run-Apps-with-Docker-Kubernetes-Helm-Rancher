@@ -37,4 +37,4 @@ echo " Deletando os replicasets"
 kubectl delete replicaset tomcat-replicaset
 
 echo " Deletendo o NodePort"
-kubectl delete NodePort tomcat-service-nodeport
+kubectl delete service tomcat8-service-nodeport
