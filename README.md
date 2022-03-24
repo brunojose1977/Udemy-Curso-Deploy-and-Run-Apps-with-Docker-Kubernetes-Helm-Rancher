@@ -53,6 +53,9 @@ kubectl get service tomcat-internet -o yaml > pod-tomcat-internet-NodePort.yaml
 #Criando um deployment de 3 PODs de contêineres Tomcat8
 kubectl create deployment tomcat-deployment --image=brunojose1977/tomcat8 --port=8080 --replicas=3
 
+#Expondo o serviço como NodePort assim poderá ser acessado pelo IP do Node (laptop linux)
+kubectl expose deployment tomcat-deployment --name=tomcat8-service-nodeport --type=NodePort --port 8080
+
 #Listando os deployments
 kubectl get deployments
 
@@ -71,7 +74,6 @@ kubectl expose deployment tomcat-deployment --name=tomcat-deployment-service-tip
 
 #Agora expondo esse serviço com NodePort
 kubectl expose service tomcat8-deployment-service-tipo-clusterip --name=tomcat8-service-nodeport --type=NodePort --port 8080
-
 
 #exportando o template de servico do deployment tipo ClusterIP
 kubectl get service tomcat-deployment-service-tipo-clusterip -o yaml > simple-tomcat-expose-deployment-3-replicas-service-type-ClusterIP.yaml

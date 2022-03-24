@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-03-15T01:18:47Z"
+  labels:
+    app: tomcat-app
+  name: tomcat8-service-nodeport
+  namespace: default
+  resourceVersion: "732431"
+  selfLink: /api/v1/namespaces/default/services/tomcat8-service-nodeport
+  uid: ea615ae5-8f81-4db7-bba0-9e18a8b8eda0
+spec:
+  clusterIP: 10.152.183.247
+  clusterIPs:
+  - 10.152.183.247
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30808
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: tomcat-app
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
